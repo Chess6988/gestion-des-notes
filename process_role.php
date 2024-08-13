@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json');
+
 // Database connection
 $servername = "localhost";
 $username = "root";
@@ -60,6 +62,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $conn->close();
-
 echo json_encode($response);
 ?>

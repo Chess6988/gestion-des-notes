@@ -341,41 +341,47 @@
                 type: 'POST',
                 data: $('#roleForm').serialize(),
                 success: function(response) {
-                    var res = JSON.parse(response);
-                    if (res.status === 'success') {
-                        $('#confirmationModal .modal-body').text(res.message);
-                        $('#confirmationModal').modal('show');
-                        playSound('confetti');
+                    try {
+                        var res = JSON.parse(response);
 
-                        confettiContainer.css('display', 'block');
-                        starContainer.css('display', 'flex');
-                        triggerStarAnimation();
-                        
-                        setTimeout(function() {
-                            confettiContainer.css('display', 'none');
-                            starContainer.css('display', 'none');
-                            switch (res.role) {
-                                case 'admin':
-                                    window.location.href = 'choix/admin/signup_admin.html';
-                                    break;
-                                case 'student':
-                                    window.location.href = 'choix/etudiant/signup_etudiant.html';
-                                    break;
-                                case 'teacher':
-                                    window.location.href = 'choix/enseignant/signup_enseignant.html';
-                                    break;
-                                case 'superadmin':
-                                    window.location.href = 'choix/superadmin/signup_superadmin.html';
-                                    break;
-                            }
-                        }, 5000); // Redirect after 5 seconds
-                    } else {
-                        $('#confirmationModal .modal-body').text(res.message);
+                        if (res.status === 'success') {
+                            $('#confirmationModal .modal-body').text(res.message);
+                            $('#confirmationModal').modal('show');
+                            playSound('confetti');
+
+                            confettiContainer.css('display', 'block');
+                            starContainer.css('display', 'flex');
+                            triggerStarAnimation();
+
+                            setTimeout(function() {
+                                confettiContainer.css('display', 'none');
+                                starContainer.css('display', 'none');
+                                switch (res.role) {
+                                    case 'admin':
+                                        window.location.href = 'choix/admin/signup_admin.html';
+                                        break;
+                                    case 'student':
+                                        window.location.href = 'choix/etudiant/signup_etudiant.html';
+                                        break;
+                                    case 'teacher':
+                                        window.location.href = 'choix/enseignant/signup_enseignant.html';
+                                        break;
+                                    case 'superadmin':
+                                        window.location.href = 'choix/superadmin/signup_superadmin.html';
+                                        break;
+                                }
+                            }, 5000); // Redirect after 5 seconds
+                        } else {
+                            $('#confirmationModal .modal-body').text(res.message);
+                            $('#confirmationModal').modal('show');
+                        }
+                    } catch (e) {
+                        $('#confirmationModal .modal-body').text('Erreur lors du traitement de la réponse: ' + e.message);
                         $('#confirmationModal').modal('show');
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    $('#confirmationModal .modal-body').text('Vous avez un problem connexion internet: ' + textStatus + ' - ' + errorThrown);
+                    $('#confirmationModal .modal-body').text('Vous avez un problème de connexion internet: ' + textStatus + ' - ' + errorThrown);
                     $('#confirmationModal').modal('show');
                 }
             });
@@ -434,7 +440,7 @@
         // Function to trigger star animation
         function triggerStarAnimation() {
             const stars = starContainer.find('.star');
-            stars.each(function (index) {
+            stars.each(function(index) {
                 const star = $(this);
                 setTimeout(() => {
                     star.css('animation', 'starPop 1s ease-in-out');
@@ -450,5 +456,6 @@
         }
     }
 </script>
+
 </body>
 </html>
