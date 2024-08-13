@@ -1,6 +1,4 @@
 <?php
-header('Content-Type: application/json');
-
 // Database connection
 $servername = "localhost";
 $username = "root";
@@ -11,21 +9,42 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    echo json_encode(['status' => 'error', 'message' => 'Connection failed: ' . $conn->connect_error]);
-    exit();
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Temporary debugging script to log all roles and passwords
+$result = $conn->query("SELECT role, rolePassword FROM roles");
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        error_log("Role: " . $row["role"] . " - Password: " . $row["rolePassword"]);
+    }
+} else {
+    error_log("0 results");
 }
 
 $response = array('status' => 'error', 'message' => 'Mot de passe incorrect');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $role = $_POST['role'];
     $plainPassword = $_POST['rolePassword'];
 
-    // Prepare and execute the SQL statement
+    // Debugging: Log received role and password
+    error_log("Received Role: " . $role);
+    error_log("Received Password: " . $plainPassword);
+
+    // SQL query to fetch plain text password from database based on role
     $stmt = $conn->prepare("SELECT rolePassword FROM roles WHERE role = ?");
-    $stmt->bind_param("s", $role);
-    $stmt->execute();
-    $stmt->bind_result($dbPassword);
-    if ($stmt->fetch()) {
+    if ($stmt) {
+        $stmt->bind_param("s", $role);
+        $stmt->execute();
+        $stmt->bind_result($dbPassword);
+        $stmt->fetch();
+        $stmt->close();
+
+        // Debugging: Log fetched plain text password
+        error_log("Fetched Password from DB: " . $dbPassword);
+
         // Verify the password
         if ($dbPassword !== null && $dbPassword === $plainPassword) {
             error_log("Password match successful");
@@ -38,9 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response['message'] = 'Erreur de requête SQL';
         error_log("SQL error: " . $conn->error);
     }
-    $stmt->close();
 }
 
-echo json_encode($response);
 $conn->close();
+
+echo json_encode($response);
 ?>
