@@ -1,0 +1,462 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+    .sidebar {
+        height: 100vh;
+        background-color: #343a40;
+    }
+    .sidebar h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+        color: white;
+    }
+    .sidebar .nav-link {
+        font-size: 18px;
+        margin: 10px 0;
+        color: white;
+    }
+    .sidebar .nav-link:hover {
+        background-color: #495057;
+        border-radius: 4px;
+    }
+    .content {
+        padding: 20px;
+        flex-grow: 1;
+    }
+    .content h3 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    .table th {
+        background-color: #007bff;
+        color: white;
+    }
+    .btn-custom {
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+    }
+    .btn-custom:hover {
+        background-color: #0056b3;
+    }
+    .filter-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .filter-container select {
+        margin-right: 10px;
+        flex-grow: 1;
+    }
+</style>
+
+
+!--     this is the styling for page acceuil for dasboard <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #ffffff;
+    }
+    .sidebar {
+        height: 100vh;
+        background-color: #1a1a1a;
+        color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .sidebar h2 {
+        font-size: 24px;
+        margin: 20px;
+    }
+    .sidebar .nav-link {
+        font-size: 18px;
+        margin: 10px 0;
+        color: white;
+    }
+    .sidebar .nav-link:hover {
+        background-color: #333333;
+        border-radius: 4px;
+    }
+    .content {
+        padding: 20px;
+        flex-grow: 1;
+        margin-left: 200px;
+    }
+    .content h1 {
+        font-size: 36px;
+        color: #e74c3c;
+        margin-bottom: 20px;
+    }
+    .content p {
+        font-size: 18px;
+        color: #2c3e50;
+    }
+    .btn-custom {
+        background-color: #e74c3c;
+        color: white;
+        border-radius: 4px;
+    }
+    .btn-custom:hover {
+        background-color: #c0392b;
+    }
+    .menu-icon {
+        display: none;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #e74c3c;
+        z-index: 1001;
+    }
+    @media (max-width: 768px) {
+        .sidebar {
+            transform: translateX(-100%);
+            width: 250px;
+        }
+        .sidebar.active {
+            transform: translateX(0);
+        }
+        .content {
+            margin-left: 0;
+        }
+        .menu-icon {
+            display: block;
+        }
+    }
+    @media (min-width: 769px) {
+        .sidebar {
+            transform: translateX(0);
+            width: 250px;
+        }
+        .content {
+            margin-left: 250px;
+        }
+    }
+</style> 
+on mes-enseignants.php(<?php
+session_start();
+
+if (!isset($_SESSION['firstName_admin']) || !isset($_SESSION['lastName_admin'])) {
+    header("Location: signin_admin.php");
+    exit();
+}
+require_once 'db_connect.php';
+
+function fetchEnseignants($conn) {
+    $stmt = $conn->prepare("SELECT id_enseignant, firstName_enseignant, lastName_enseignant, date_creation FROM enseignants");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $enseignants = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $enseignants;
+}
+
+function fetchAnnees($conn) {
+    $stmt = $conn->prepare("SELECT id_annee, annee FROM annees");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $annees = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $annees;
+}
+
+$conn = getDbConnection();
+$enseignants = fetchEnseignants($conn);
+$annees = fetchAnnees($conn);
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes Enseignants</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Mes Enseignants</h2>
+    <div class="list-group">
+        <?php foreach ($enseignants as $enseignant): ?>
+            <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#assignModal"
+               data-enseignant-id="<?= $enseignant['id_enseignant'] ?>"
+               data-enseignant-name="<?= $enseignant['firstName_enseignant'] . ' ' . $enseignant['lastName_enseignant'] ?>">
+                <?= $enseignant['firstName_enseignant'] . ' ' . $enseignant['lastName_enseignant'] ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="assignModalLabel">Assign Subjects to <span id="enseignantName"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="assignForm">
+                <div class="modal-body">
+                    <input type="hidden" name="enseignantId" id="enseignantId">
+                    <div class="form-group">
+                        <label for="anneeId">Select Year</label>
+                        <select class="form-control" id="anneeId" name="anneeId">
+                            <?php foreach ($annees as $annee): ?>
+                                <option value="<?= $annee['id_annee'] ?>"><?= $annee['annee'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div id="matieresContainer"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Assign</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $('#assignModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var enseignantId = button.data('enseignant-id');
+        var enseignantName = button.data('enseignant-name');
+
+        var modal = $(this);
+        modal.find('#enseignantName').text(enseignantName);
+        modal.find('#enseignantId').val(enseignantId);
+
+        var anneeId = $('#anneeId').val();
+        fetchMatieres(anneeId);
+    });
+
+    $('#anneeId').change(function () {
+        var anneeId = $(this).val();
+        fetchMatieres(anneeId);
+    });
+
+    function fetchMatieres(anneeId) {
+        $.ajax({
+            url: 'fetch_matieres.php',
+            type: 'POST',
+            data: { anneeId: anneeId },
+            success: function (response) {
+                response = JSON.parse(response);
+                if (response.status === 'success') {
+                    $('#matieresContainer').html(response.data);
+                } else {
+                    $('#matieresContainer').html('<p>No subjects found for the selected year.</p>');
+                }
+            }
+        });
+    }
+
+    $('#assignForm').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'assign_matiere.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function (response) {
+                response = JSON.parse(response);
+                if (response.status === 'success') {
+                    alert('Subjects assigned successfully!');
+                    $('#assignModal').modal('hide');
+                } else {
+                    alert(response.message);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
+) the thing i see after selcting the year, it does not generate the matiere and matiere commune that was registered by etudiant(profile for etudiant) correspoding on the annee etudiant has chosen use (
+-- Create the profile_etudiant table
+CREATE TABLE IF NOT EXISTS profile_etudiant (
+    id_profile INT AUTO_INCREMENT PRIMARY KEY,
+    id_etudiant INT,
+    id_filiere INT,
+    id_matiere INT,
+    id_semestre INT,
+    id_annee INT,
+    id_niveau INT,
+    id_matiere_commune INT,
+    FOREIGN KEY (id_etudiant) REFERENCES etudiants(id_etudiant),
+    FOREIGN KEY (id_filiere) REFERENCES filieres(id_filiere),
+    FOREIGN KEY (id_matiere) REFERENCES matieres(id_matiere),
+    FOREIGN KEY (id_semestre) REFERENCES semestres(id_semestre),
+    FOREIGN KEY (id_annee) REFERENCES annees(id_annee),
+    FOREIGN KEY (id_niveau) REFERENCES niveaux(id_niveau),
+    FOREIGN KEY (id_matiere_commune) REFERENCES matieres_communes(id_matiere_commune)
+);). but show instead assign button only. correct it along with fetch_matieres.php(<?php
+require_once 'db_connect.php';
+
+function fetchMatieresByAnnee($conn, $anneeId) {
+    $stmt = $conn->prepare("SELECT id_matiere, nom FROM matieres WHERE id_annee = ?");
+    $stmt->bind_param("i", $anneeId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $matieres = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $matieres;
+}
+
+function fetchMatieresCommunesByAnnee($conn, $anneeId) {
+    $stmt = $conn->prepare("SELECT id_matiere_commune, nom FROM matieres_communes WHERE id_annee = ?");
+    $stmt->bind_param("i", $anneeId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $matieres_communes = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $matieres_communes;
+}
+
+$anneeId = $_POST['anneeId'];
+
+$conn = getDbConnection();
+$matieres = fetchMatieresByAnnee($conn, $anneeId);
+$matieres_communes = fetchMatieresCommunesByAnnee($conn, $anneeId);
+$conn->close();
+
+if (!empty($matieres) || !empty($matieres_communes)) {
+    ob_start();
+    ?>
+    <div class="form-group">
+        <label for="matieres">Select Subjects</label>
+        <?php foreach ($matieres as $matiere): ?>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="matieres[]" value="<?= $matiere['id_matiere'] ?>" id="matiere<?= $matiere['id_matiere'] ?>">
+                <label class="form-check-label" for="matiere<?= $matiere['id_matiere'] ?>"><?= $matiere['nom'] ?></label>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <div class="form-group">
+        <label for="matieres_communes">Select Common Subjects</label>
+        <?php foreach ($matieres_communes as $matiere_commune): ?>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="matieres_communes[]" value="<?= $matiere_commune['id_matiere_commune'] ?>" id="matiereCommune<?= $matiere_commune['id_matiere_commune'] ?>">
+                <label class="form-check-label" for="matiereCommune<?= $matiere_commune['id_matiere_commune'] ?>"><?= $matiere_commune['nom'] ?></label>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <?php
+    $output = ob_get_clean();
+    echo json_encode(['status' => 'success', 'data' => $output]);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'No subjects found for the selected year']);
+}
+?>
+). assign_matiere.php(<?php
+session_start();
+require_once 'db_connect.php';
+
+function validateInputs($conn, $enseignantId, $matieres, $matieres_communes) {
+    // Check if enseignantId exists
+    $stmt = $conn->prepare("SELECT id_enseignant FROM enseignants WHERE id_enseignant = ?");
+    $stmt->bind_param("i", $enseignantId);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows === 0) {
+        return false;
+    }
+    $stmt->close();
+
+    // Check if matieres and matieres_communes exist
+    foreach ($matieres as $matiereId) {
+        $stmt = $conn->prepare("SELECT id_matiere FROM matieres WHERE id_matiere = ?");
+        $stmt->bind_param("i", $matiereId);
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows === 0) {
+            return false;
+        }
+        $stmt->close();
+    }
+
+    foreach ($matieres_communes as $matiereCommuneId) {
+        $stmt = $conn->prepare("SELECT id_matiere_commune FROM matieres_communes WHERE id_matiere_commune = ?");
+        $stmt->bind_param("i", $matiereCommuneId);
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows === 0) {
+            return false;
+        }
+        $stmt->close();
+    }
+
+    return true;
+}
+
+function assignMatieres($conn, $adminId, $enseignantId, $matieres, $matieres_communes) {
+    foreach ($matieres as $matiereId) {
+        $stmt = $conn->prepare("INSERT INTO admins_enseignants_matieres (id_admin, id_enseignant, id_matiere) VALUES (?, ?, ?)");
+        $stmt->bind_param("iii", $adminId, $enseignantId, $matiereId);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    foreach ($matieres_communes as $matiereCommuneId) {
+        $stmt = $conn->prepare("INSERT INTO admins_enseignants_matieres (id_admin, id_enseignant, id_matiere_commune) VALUES (?, ?, ?)");
+        $stmt->bind_param("iii", $adminId, $enseignantId, $matiereCommuneId);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    return true;
+}
+
+if (!isset($_SESSION['admin_id'])) {
+    echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
+    exit();
+}
+
+$adminId = $_SESSION['admin_id'];
+$enseignantId = $_POST['enseignantId'];
+$matieres = isset($_POST['matieres']) ? $_POST['matieres'] : [];
+$matieres_communes = isset($_POST['matieres_communes']) ? $_POST['matieres_communes'] : [];
+
+$conn = getDbConnection();
+
+if (validateInputs($conn, $enseignantId, $matieres, $matieres_communes)) {
+    if (assignMatieres($conn, $adminId, $enseignantId, $matieres, $matieres_communes)) {
+        echo json_encode(['status' => 'success']);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Failed to assign matieres']);
+    }
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid inputs']);
+}
+
+$conn->close();
+?>
+)
+   //session_start
+
+
+
+
+
+   session_start();
+
+if (!isset($_SESSION['firstName_enseignant']) || !isset($_SESSION['lastName_enseignant'])) {
+    header("Location: signin_enseignant.php");
+    exit();
+}
+
+require 'db_connect.php';

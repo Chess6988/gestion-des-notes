@@ -1,0 +1,21 @@
+{
+  "sessionId": "ee78a6d6-21cb-4359-95bb-5138825a1f8a",
+  "title": "Chat with Neat",
+  "models": {
+    "gpt-4": {
+      "id": "gpt-4",
+      "uri": "https://api.openai.com/v1/chat/completions",
+      "interface": "OpenAI"
+    }
+  },
+  "messages": [
+    {
+      "user": "user",
+      "ts": "2024-07-29T23:34:09.698Z",
+      "payload": {
+        "role": "user",
+        "content": "gestion de note univers"
+      }
+    }
+  ]
+}

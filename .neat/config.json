@@ -1,0 +1,15 @@
+{
+    "paths": [],
+    "dbs": [],
+    "apis": [],
+    "chats": [
+        {
+            "id": "452a6a6d-fdb8-40c4-a91f-f4abced0da97",
+            "title": "Chat with Neat"
+        },
+        {
+            "id": "ee78a6d6-21cb-4359-95bb-5138825a1f8a",
+            "title": "Chat with Neat"
+        }
+    ]
+}

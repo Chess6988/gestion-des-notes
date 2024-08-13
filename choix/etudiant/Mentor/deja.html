@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]>
+<html class="ie9"><![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="1ygepb9kDvTisgyAUiQN2fx15Irx3c0zRZ9Nr4Zt"/>
+    <title>Page essaie</title>
+    <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Vendor CSS -->
+    <link href="https://www.ubastudent.online/bs/css/style.css" rel="stylesheet">
+    <link href="https://www.ubastudent.online/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="https://www.ubastudent.online/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="https://www.ubastudent.online/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"
+          rel="stylesheet">
+    <link href="https://www.ubastudent.online/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
+          rel="stylesheet">
+    <link href="https://www.ubastudent.online/vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+    <link href="https://www.ubastudent.online/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css"
+          rel="stylesheet">
+          <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+          <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- CSS -->
+    <link href="https://www.ubastudent.online/css/template/app.min.1.css" rel="stylesheet">
+    <link href="https://www.ubastudent.online/css/template/app.min.2.css" rel="stylesheet">
+    <link media="all" type="text/css" rel="stylesheet"
+          href="https://www.ubastudent.online/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css">
+          <style>
+            .course-box {
+                border: 1px solid #ddd;
+                padding: 20px;
+                height: 100%;
+            }
+            .course-box h3 {
+                margin-bottom: 20px;
+            }
+            .d-none {
+                display: none;
+            }
+            
+        @media print {
+            @page {
+                size: auto; /* auto is the initial value */
+                margin: 5mm; /* this affects the margin in the printer settings */
+            }
+            .print-button {
+                display: none; /* Hide print button when printing */
+            }
+            .table td,
+            .table th {
+                font-size: 10px; /* Reduce font size for better fit */
+                padding: 0.25rem; /* Reduce padding for better fit */
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header-img {
+            max-width: 200px;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .sub-title {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .info p {
+            margin-bottom: 5px;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #000;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .header-bg {
+            color: black;
+            padding: 10px 0;
+        }
+
+        .left-info,
+        .right-info {
+            font-size: 1rem;
+        }
+
+        .odd-row {
+            background-color: rgb(227, 227, 252);
+        }
+
+        .final-mark {
+            color: red;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0; /* Ensure there's no padding at the top */
+            margin: 0; /* Ensure there's no margin at the top */
+        }
+
+        .header-content img {
+            margin: 0 20px;
+        }
+
+        .header-content div {
+            max-width: 30%;
+        }
+
+        .table thead th {
+            background-color: skyblue;
+        }
+
+        .print-button {
+            margin-top: 20px;
+        }
+    
+        </style>
+         
+
+   
+         
+</head>
+<body data-ma-header="obiasong">
+<script src="https://www.ubastudent.online/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+<script src="https://www.ubastudent.online/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+<script src="https://www.ubastudent.online/js/gostud.js"></script>
+
+<header id="header" class="header d-flex align-items-center sticky-top">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+  
+   
+
+  
+
+  </div>
+</header>
+
+<section id="main">
+
+<section id="content">
+    <div class="container">
+        <div class="card">
+            <br/>
+            <br/>
+
+<div style='margin-right:20%;margin-left: 20%;cursor: pointer' id="msg" onclick="clearMsg(this)"></div>
+            
+
+
+
+<script type="application/javascript">
+    $(document).ready(function() {
+
+        $("#HeaderRegCourses").css("background-color","white");
+        $("#HeaderRegCourses").css("color","#08387F");
+
+
+    });
+
+</script>
+
+<br/>
+<!-- Final registered courses page-->
+
+<div id ="finalRegCoursesPage" style="margin: 0px 10%;">
+    <div class="alert " role="alert" style="text-align: center;background-color: #08387F; color: white;">Verifier vos matieres ici
+        </div>
+        <div class="container mt-4">
+            <div class="container" id="result-container">
+                <div class="row text-center header-bg header-content">
+                    <div class="col-4 text-left left-info">
+                        <p><strong>Name:</strong> KUETE NKWENTAMO VALDES FRED</p>
+                        <p><strong>Filier choisi:</strong> Genie Logiciel</p>
+                        <p><strong>Année academique:</strong> 2023/2024</p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <img src="logo-ime-p.png" alt="University Logo" class="header-img img-fluid" id="university-logo">
+                    </div>
+                    <div class="col-4 text-right right-info">
+                        <p><strong>Semestre:</strong> 2eme Semestre</p>
+                        <p><strong>Date:</strong> 24 Juillet, 2024</p>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-12">
+                        <p class="title">Resultat final</p>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="table table-bordered mt-4">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>List des Matiere enregistrez</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd-row">
+                                <td>1</td>
+                                <td>System d'exploitation</td>
+
+
+                        
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Infographie</td>
+
+
+                                
+                            </tr>
+                            <tr class="odd-row">
+                                <td>3</td>
+                                <td>Genie logiciel</td>
+
+
+                        
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Economie General</td>
+
+
+                        
+                            </tr>
+                            <tr class="odd-row">
+                                <td>5</td>
+                                <td>Comptabilite General</td>
+
+
+                            
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Programmation web</td>
+
+
+                            
+                            </tr>
+                            <tr class="odd-row">
+                                <td>7</td>
+                                <td>Droit Commercial</td>
+
+                            
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Economie et Organisation des entreprise</td>
+
+                            
+                            </tr>
+                            <tr class="odd-row">
+                                <td>9</td>
+                                <td>Droit Civil</td>
+
+
+                                
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Anglais</td>
+
+
+                                
+                            </tr>
+                            <tr class="odd-row">
+                                <td>11</td>
+                                <td>Francais</td>
+
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button style="text-align: right; background-color: #08387F; color: white; font-weight: bolder;">  <a href="index.html">Retour au page d'acceuil</a> </button>
+               
+            </div>
+          
+        </div>
+   
+    
+</div>
+
+            <br/>
+            <br/>
+        </div>
+
+    </div>
+</section>
+
+<div id ="up"></div>
+<footer>
+      
+   
+
+</section>
+
+<!-- Page Loader -->
+<div id="processLoader"></div>
+
+<div class="page-loader palette-Obiasong bg">
+    <div class="preloader pl-xl pls-white">
+        <svg class="pl-circular" viewBox="25 25 50 50">
+        <circle class="plc-path" cx="50" cy="50" r="20"/>
+        </svg>
+    </div>
+</div>
+
+<
+
+<script src="https://www.ubastudent.online/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script src="https://www.ubastudent.online/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script src="https://www.ubastudent.online/vendors/bower_components/Waves/dist/waves.min.js"></script>
+
+<script src="https://www.ubastudent.online/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+
+<script src="https://www.ubastudent.online/vendors/bower_components/moment/min/moment.min.js"></script>
+
+<script src="https://www.ubastudent.online/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+
+<script src="https://www.ubastudent.online/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+
+<script src="https://www.ubastudent.online/vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
+
+<script src="https://www.ubastudent.online/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+
+
+
+        <!--<script src="js/charts.js"></script>-->
+
+<script src="https://www.ubastudent.online/js/template/functions.js"></script>
+
+<script src="https://www.ubastudent.online/js/template/actions.js"></script>
+
+<script src="https://www.ubastudent.online/js/template/demo.js"></script>
+
+<script src="https://www.ubastudent.online/js/student/update_level.js"></script>
+
+
+<script src="https://www.ubastudent.online/js/docs.min.js"></script>
+
+
+
+</body>
+</html>

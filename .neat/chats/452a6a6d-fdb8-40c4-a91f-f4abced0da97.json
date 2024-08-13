@@ -1,0 +1,21 @@
+{
+  "sessionId": "452a6a6d-fdb8-40c4-a91f-f4abced0da97",
+  "title": "Chat with Neat",
+  "models": {
+    "gpt-4": {
+      "id": "gpt-4",
+      "uri": "https://api.openai.com/v1/chat/completions",
+      "interface": "OpenAI"
+    }
+  },
+  "messages": [
+    {
+      "user": "user",
+      "ts": "2024-07-29T23:33:03.947Z",
+      "payload": {
+        "role": "user",
+        "content": "hey i need a dasboard for gestion de note university"
+      }
+    }
+  ]
+}

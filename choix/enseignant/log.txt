@@ -1,0 +1,172 @@
+Received data: id_enseignant=15, id_annee=, matieres=["40","62"], matieres_communes=[]
+Inserted matiere: 40
+Inserted matiere: 62
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62","63","64"], matieres_communes=["1","2","3"]
+Inserted matiere: 62
+Inserted matiere: 63
+Inserted matiere: 64
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Received data: id_enseignant=15, id_annee=, matieres=["62"], matieres_communes=[]
+Inserted matiere: 62
+Received data: id_enseignant=15, id_annee=1, matieres=["35"], matieres_communes=["14"]
+Inserted matiere: 35
+Inserted matiere_commune: 14
+Received data: id_enseignant=16, id_annee=1, matieres=["62"], matieres_communes=["12"]
+Inserted matiere: 62
+Inserted matiere_commune: 12
+Received data: id_enseignant=17, id_annee=1, matieres=["41","45"], matieres_communes=["1","2"]
+Inserted matiere: 41
+Inserted matiere: 45
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Received data: id_enseignant=18, id_annee=1, matieres=["64"], matieres_communes=["3"]
+Inserted matiere: 64
+Inserted matiere_commune: 3
+Received data: id_enseignant=18, id_annee=2, matieres=["80"], matieres_communes=["22"]
+Inserted matiere: 80
+Inserted matiere_commune: 22
+Received data: id_enseignant=19, id_annee=1, matieres=["62","64"], matieres_communes=[]
+Inserted matiere: 62
+Inserted matiere: 64
+Received data: id_enseignant=20, id_annee=1, matieres=["42","61","62"], matieres_communes=["4","4"]
+Inserted matiere: 42
+Inserted matiere: 61
+Inserted matiere: 62
+Inserted matiere_commune: 4
+Inserted matiere_commune: 4
+Received data: id_enseignant=21, id_annee=1, matieres=[], matieres_communes=["4","4","11","11"]
+Inserted matiere_commune: 4
+Inserted matiere_commune: 4
+Inserted matiere_commune: 11
+Inserted matiere_commune: 11
+Received data: id_enseignant=22, id_annee=1, matieres=["42","61","80"], matieres_communes=[]
+Inserted matiere: 42
+Inserted matiere: 61
+Inserted matiere: 80
+Received data: id_enseignant=23, id_annee=1, matieres=["61","63"], matieres_communes=["11","13","14","15","16"]
+Inserted matiere: 61
+Inserted matiere: 63
+Inserted matiere_commune: 11
+Inserted matiere_commune: 13
+Inserted matiere_commune: 14
+Inserted matiere_commune: 15
+Inserted matiere_commune: 16
+Received data: id_enseignant=25, id_annee=1, matieres=["35","36","37","38","39","40"], matieres_communes=["1","2","3","4"]
+Inserted matiere: 35
+Inserted matiere: 36
+Inserted matiere: 37
+Inserted matiere: 38
+Inserted matiere: 39
+Inserted matiere: 40
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Inserted matiere_commune: 4
+Received data: id_enseignant=27, id_annee=2, matieres=["35","36","37","38","39","40"], matieres_communes=["1","2","3","4"]
+Inserted matiere: 35
+Inserted matiere: 36
+Inserted matiere: 37
+Inserted matiere: 38
+Inserted matiere: 39
+Inserted matiere: 40
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Inserted matiere_commune: 4
+Received data: id_enseignant=28, id_annee=2, matieres=["35","36","37","38","39","40"], matieres_communes=["1","2","3","4"]
+Inserted matiere: 35
+Inserted matiere: 36
+Inserted matiere: 37
+Inserted matiere: 38
+Inserted matiere: 39
+Inserted matiere: 40
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 3
+Inserted matiere_commune: 4

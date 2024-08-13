@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('imm copy.jpg') no-repeat center center fixed;
+            background-size: cover;
+            cursor: url('https://cur.cursors-4u.net/smilies/smi-7/smi675.cur'), auto; /* Custom Cursor */
+        }
+    
+        .custom-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+    
+        .form-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.2); /* Transparent with slight opacity */
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px); /* For better readability */
+            text-align: center;
+        }
+    
+        .form-box h5 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+    
+        .input-group-text {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px 0 0 10px;
+            border: none;
+        }
+    
+        .form-control {
+            background: rgba(255, 255, 255, 0.8); /* Slightly transparent input background */
+            border-radius: 0 10px 10px 0;
+            transition: all 0.3s;
+            border: none;
+        }
+    
+        .form-control:focus {
+            border-color: #f50606;
+            box-shadow: 0 0 10px rgba(240, 36, 36, 0.5);
+            background-color: #f1f1f1;
+        }
+    
+        .btn-custom {
+            background: linear-gradient(135deg, #004080, #0073e6);
+            color: white;
+            border-radius: 10px;
+            padding: 10px 20px;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
+        }
+    
+        .btn-custom:hover {
+            background: whitesmoke;
+            transform: scale(1.05);
+        }
+    
+        .form-box p a {
+            color: #ff6347; /* Tomato color for links */
+            text-decoration: none;
+        }
+    
+        .form-box p a:hover {
+            text-decoration: underline;
+        }
+    
+        /* Modal Customization */
+        .modal-content {
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+    
+        .modal-header {
+            border-bottom: none;
+            position: relative;
+        }
+    
+        .modal-title {
+            font-size: 24px;
+            color: #00c853; /* Bright green for a positive tone */
+        }
+    
+        .modal-header .close {
+            color: white;
+            font-size: 30px;
+            opacity: 1;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            transition: transform 0.3s;
+        }
+    
+        .modal-header .close:hover {
+            transform: rotate(90deg);
+        }
+    
+        .modal-body {
+            font-size: 18px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin: 20px;
+        }
+    
+        .modal-footer {
+            border-top: none;
+            justify-content: center;
+        }
+    
+        .modal-footer .btn-primary {
+            background: #00c853;
+            border: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+    
+        .modal-footer .btn-primary:hover {
+            background: #006622;
+            transform: scale(1.05);
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div class="custom-container">
+        <div class="form-box">
+            <h5>Sign In (Admin)</h5>
+            <form id="signinForm" action="signin_admin.php" method="POST">
+                <div class="form-group">
+                    <label for="firstName_admin">Nom</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="firstName_admin" name="firstName_admin" placeholder="Entrez votre nom" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName_admin">Prénom</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="lastName_admin" name="lastName_admin" placeholder="Entrez votre prénom" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-custom">Sign In</button>
+            </form>
+            <div class="text-center mt-3">
+                <a href="signup_admin.html" class="btn btn-custom">
+                    <i class="fas fa-sign-in-alt"></i> Page d'inscription
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        $(document).ready(function () {
+            $('#signinForm').submit(function (event) {
+                event.preventDefault(); // Prevent form submission
+                var formData = $(this).serialize(); // Serialize form data
+
+                $.ajax({
+                    type: "POST",
+                    url: $(this).attr('action'),
+                    data: formData,
+                    dataType: 'json', // Expect JSON response from server
+                    success: function (response) {
+                        // Handle success message
+                        if (response.status === 'success') {
+                            // Show success message
+                            $('#confirmationMessage').text(response.message);
+                            $('#confirmationModal').modal('show');
+
+                            // Redirect to etudiant.html after 5 seconds
+                            setTimeout(function () {
+                                window.location.href = 'admin-dashboard.php';
+                            }, 5000); // 5 seconds delay
+                        } else {
+                            // Show error message
+                            alert(response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert('Error signing in. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Bootstrap Modal for Confirmation Messages -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel"><i class="fas fa-check-circle"></i> Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="confirmationMessage"><i class="fas fa-info-circle"></i> Votre compte a été créé avec succès!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fas fa-thumbs-up"></i> OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

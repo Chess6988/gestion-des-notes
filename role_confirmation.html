@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sélection du Rôle et Mot de Passe</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- FontAwesome CSS -->
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(45deg, #f3ec78, #af4261);
+        overflow: hidden;
+        cursor: url('https://cur.cursors-4u.net/smilies/smi-7/smi675.cur'), auto; /* Custom Cursor */
+    }
+    .parallax-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('imm.jpg') no-repeat center center fixed;
+        background-size: cover;
+        filter: blur(3px);
+        animation: moveBackground 20s linear infinite;
+    }
+    @keyframes moveBackground {
+        0% { transform: scale(1.1) translate(0, 0); }
+        50% { transform: scale(1.1) translate(0, -20%); }
+        100% { transform: scale(1.1) translate(0, 0); }
+    }
+    .custom-container {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    }
+    .form-box {
+        width: 900px;
+        padding: 30px;
+        background: white; /* Transparent with slight opacity */
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px); /* For better readability */
+    }
+    .logo {
+        max-width: 150px;
+        margin-bottom: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        animation: bounceIn 1s ease-in-out;
+    }
+    @keyframes bounceIn {
+        0% {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        60% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    .form-group label {
+        font-weight: bold;
+        color: #004080;
+    }
+    .form-control {
+        transition: all 0.3s;
+    }
+    .form-control:focus {
+        border-color: #004080;
+        box-shadow: 0 0 5px #004080;
+        background-color: #e6f7ff;
+    }
+    .form-control:valid {
+        border-color: #28a745;
+        box-shadow: 0 0 5px #28a745;
+    }
+    .form-control:invalid {
+        border-color: red;
+    }
+    .btn-custom {
+        background-color: #004080;
+        color: white;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-custom:hover {
+        background-color: darkblue;
+        transform: scale(1.05);
+    }
+    .progress-container {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .progress-bar {
+        height: 30px;
+        background-color: #004080;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        font-weight: bold;
+        animation: moveRight 0.5s ease-in-out;
+        transition: width 0.5s;
+    }
+    @keyframes moveRight {
+        0% { width: 0%; }
+        100% { width: var(--width); }
+    }
+    .level-up {
+        position: absolute;
+        top: -35px;
+        right: 0;
+        background: #ff0;
+        color: #333;
+        padding: 5px 10px;
+        border-radius: 15px;
+        animation: fadeInOut 2s ease-in-out;
+        display: none;
+    }
+    @keyframes fadeInOut {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+    .confetti-container, .sound-toggle, .star-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        pointer-events: none;
+        z-index: 999;
+    }
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #ff0;
+        animation: confetti 5s linear infinite;
+    }
+    .confetti:nth-child(1) { animation-delay: 0s; left: 10%; }
+    .confetti:nth-child(2) { animation-delay: 1s; left: 20%; }
+    .confetti:nth-child(3) { animation-delay: 2s; left: 30%; }
+    .confetti:nth-child(4) { animation-delay: 3s; left: 40%; }
+    .confetti:nth-child(5) { animation-delay: 4s; left: 50%; }
+    .confetti:nth-child(6) { animation-delay: 5s; left: 60%; }
+    .confetti:nth-child(7) { animation-delay: 6s; left: 70%; }
+    .confetti:nth-child(8) { animation-delay: 7s; left: 80%; }
+    .confetti:nth-child(9) { animation-delay: 8s; left: 90%; }
+    .confetti:nth-child(10) { animation-delay: 9s; left: 100%; }
+
+    @keyframes confetti {
+        0% { transform: translateY(0) rotate(0); }
+        100% { transform: translateY(100vh) rotate(720deg); }
+    }
+
+    .star {
+        position: absolute;
+        color: #ff0;
+        font-size: 20px;
+        animation: starPop 1s ease-in-out;
+    }
+    @keyframes starPop {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
+
+    .sound-toggle {
+        top: auto;
+        bottom: 20px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    .sound-toggle i {
+        font-size: 1.5rem;
+        color: #004080;
+    }
+    .feedback-msg {
+        margin-top: 10px;
+        text-align: center;
+        color: #004080;
+        font-weight: bold;
+        display: none;
+    }
+    .motivational-message {
+        margin-top: 10px;
+        text-align: center;
+        color: #28a745;
+        font-size: 1.1rem;
+        font-weight: bold;
+        display: none;
+    }
+    .starburst {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: starburst 2s linear infinite;
+    }
+    @keyframes starburst {
+        0% {
+            opacity: 0;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(2);
+        }
+    }
+</style>
+</head>
+<body>
+<div class="parallax-background"></div>
+<div class="custom-container">
+    <div class="form-box">
+        <div class="progress-container">
+            <div class="progress-bar" style="--width: 0%;" id="progressBar">0%</div>
+            <div class="starburst" id="starburst"></div>
+        </div>
+        <div class="level-up" id="levelUp">Level Up!</div>
+        <img src="IME.jpeg" alt="Logo" class="logo">
+        <form id="roleForm" method="post" action="process_role.php">
+            <div class="form-group">
+                <label for="role">Sélectionnez votre rôle :</label>
+                <select class="form-control" id="role" name="role" required>
+                    <option value=""><i class="fas fa-user"></i> Choisissez votre rôle</option>
+                    <option value="admin"><i class="fas fa-user-shield"></i> Admin</option>
+                    <option value="student"><i class="fas fa-user-graduate"></i> Étudiant</option>
+                    <option value="teacher"><i class="fas fa-chalkboard-teacher"></i> Enseignant</option>
+                    <option value="superadmin"><i class="fas fa-crown"></i> Superadmin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="rolePassword">Mot de passe du rôle :</label>
+                <input type="password" class="form-control" id="rolePassword" name="rolePassword" required>
+                <small class="form-text text-muted">Entrez votre mot de passe de rôle.</small>
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Valider</button>
+            <div class="feedback-msg" id="feedbackMsg"></div>
+            <div class="motivational-message" id="motivationalMessage"></div>
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap modal for confirmation -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirmation du Rôle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confetti animation container -->
+<div class="confetti-container" id="confettiContainer">
+    <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+    <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+</div>
+
+<!-- Star Container for celebrations -->
+<div class="star-container" id="starContainer">
+    <i class="fas fa-star star"></i><i class="fas fa-star star"></i>
+</div>
+
+<!-- Sound Toggle -->
+<div class="sound-toggle" id="soundToggle">
+    <i class="fas fa-volume-up"></i>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    let soundOn = true;
+
+    const sounds = {
+        progress: new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect.mp3'),
+        confetti: new Audio('https://www.myinstants.com/media/sounds/cheering.mp3'),
+        levelUp: new Audio('https://www.myinstants.com/media/sounds/spotted.mp3'),
+    };
+
+    function switchTheme() {
+        document.body.classList.toggle('dark-theme');
+    }
+
+    $(document).ready(function() {
+        const confettiContainer = $('#confettiContainer');
+        const starContainer = $('#starContainer');
+        const progressBar = $('#progressBar');
+        const feedbackMsg = $('#feedbackMsg');
+        const motivationalMessage = $('#motivationalMessage');
+        const levelUp = $('#levelUp');
+
+        $('#soundToggle').click(function() {
+            soundOn = !soundOn;
+            $(this).find('i').toggleClass('fa-volume-up fa-volume-mute');
+        });
+
+        $('#roleForm').submit(function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            $.ajax({
+                url: 'process_role.php',
+                type: 'POST',
+                data: $('#roleForm').serialize(),
+                success: function(response) {
+                    var res = JSON.parse(response);
+                    if (res.status === 'success') {
+                        $('#confirmationModal .modal-body').text(res.message);
+                        $('#confirmationModal').modal('show');
+                        playSound('confetti');
+
+                        confettiContainer.css('display', 'block');
+                        starContainer.css('display', 'flex');
+                        triggerStarAnimation();
+                        
+                        setTimeout(function() {
+                            confettiContainer.css('display', 'none');
+                            starContainer.css('display', 'none');
+                            switch (res.role) {
+                                case 'admin':
+                                    window.location.href = 'choix/admin/signup_admin.html';
+                                    break;
+                                case 'student':
+                                    window.location.href = 'choix/etudiant/signup_etudiant.html';
+                                    break;
+                                case 'teacher':
+                                    window.location.href = 'choix/enseignant/signup_enseignant.html';
+                                    break;
+                                case 'superadmin':
+                                    window.location.href = 'choix/superadmin/signup_superadmin.html';
+                                    break;
+                            }
+                        }, 5000); // Redirect after 5 seconds
+                    } else {
+                        $('#confirmationModal .modal-body').text(res.message);
+                        $('#confirmationModal').modal('show');
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $('#confirmationModal .modal-body').text('Vous avez un problem connexion internet: ' + textStatus + ' - ' + errorThrown);
+                    $('#confirmationModal').modal('show');
+                }
+            });
+        });
+
+        // Update progress bar dynamically based on form field focus and input
+        $('input, select').on('focus input', function() {
+            const filledFields = $('input:valid, select:valid').length;
+            const totalFields = $('input, select').length;
+            const progress = Math.min((filledFields / totalFields) * 100, 100);
+
+            progressBar.css('width', progress + '%');
+            progressBar.text(Math.round(progress) + '%');
+            
+            feedbackMsg.text(Math.round(progress) + '% completed');
+            feedbackMsg.show();
+
+            if (progress === 100) {
+                levelUp.show();
+                if (soundOn) playSound('levelUp');
+                setTimeout(() => levelUp.hide(), 2000);
+                $('#starburst').css('display', 'block');
+            }
+        });
+
+        // Personalized Greeting based on time of day
+        const hours = new Date().getHours();
+        let greeting = 'Bonjour';
+        if (hours >= 12 && hours < 18) {
+            greeting = 'Bon après-midi';
+        } else if (hours >= 18) {
+            greeting = 'Bonsoir';
+        }
+        $('#greeting').text(`${greeting}, UBaStudent!`);
+
+        // Motivational Messages
+        const messages = [
+            'Great job! Keep going!',
+            'You are doing fantastic!',
+            'Almost there, keep it up!',
+            'You are amazing!',
+            'Keep pushing, you are capable of great things!'
+        ];
+
+        // Show motivational message on progress
+        $('input, select').on('focus input', function() {
+            const progress = Math.round(($('input:valid, select:valid').length / $('input, select').length) * 100);
+            if (progress % 25 === 0 && progress !== 0) {
+                const message = messages[Math.floor(Math.random() * messages.length)];
+                motivationalMessage.text(message);
+                motivationalMessage.fadeIn();
+                setTimeout(() => motivationalMessage.fadeOut(), 2000);
+            }
+        });
+
+        // Function to trigger star animation
+        function triggerStarAnimation() {
+            const stars = starContainer.find('.star');
+            stars.each(function (index) {
+                const star = $(this);
+                setTimeout(() => {
+                    star.css('animation', 'starPop 1s ease-in-out');
+                    setTimeout(() => star.css('animation', ''), 1000);
+                }, index * 200);
+            });
+        }
+    });
+
+    function playSound(type) {
+        if (soundOn && sounds[type]) {
+            sounds[type].play();
+        }
+    }
+</script>
+</body>
+</html>
