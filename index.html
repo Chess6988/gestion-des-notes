@@ -308,18 +308,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-    let soundOn = true;
-
-    const sounds = {
-        progress: new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect.mp3'),
-        confetti: new Audio('https://www.myinstants.com/media/sounds/cheering.mp3'),
-        levelUp: new Audio('https://www.myinstants.com/media/sounds/spotted.mp3'),
-    };
-
-    function switchTheme() {
-        document.body.classList.toggle('dark-theme');
-    }
-
     $(document).ready(function() {
         const confettiContainer = $('#confettiContainer');
         const starContainer = $('#starContainer');
@@ -327,11 +315,6 @@
         const feedbackMsg = $('#feedbackMsg');
         const motivationalMessage = $('#motivationalMessage');
         const levelUp = $('#levelUp');
-
-        $('#soundToggle').click(function() {
-            soundOn = !soundOn;
-            $(this).find('i').toggleClass('fa-volume-up fa-volume-mute');
-        });
 
         $('#roleForm').submit(function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
@@ -345,7 +328,6 @@
                     if (res.status === 'success') {
                         $('#confirmationModal .modal-body').text(res.message);
                         $('#confirmationModal').modal('show');
-                        playSound('confetti');
 
                         confettiContainer.css('display', 'block');
                         starContainer.css('display', 'flex');
@@ -395,7 +377,6 @@
 
             if (progress === 100) {
                 levelUp.show();
-                if (soundOn) playSound('levelUp');
                 setTimeout(() => levelUp.hide(), 2000);
                 $('#starburst').css('display', 'block');
             }
@@ -443,12 +424,6 @@
             });
         }
     });
-
-    function playSound(type) {
-        if (soundOn && sounds[type]) {
-            sounds[type].play();
-        }
-    }
 </script>
 </body>
 </html>
