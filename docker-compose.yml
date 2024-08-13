@@ -6,7 +6,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - .:/var/www/role_confirmation.html
+      - .:/var/www/index.html
 
   db:
     image: mysql:5.7
