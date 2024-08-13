@@ -355,6 +355,7 @@
                         }
                     } catch (e) {
                         console.error("Invalid JSON:", e);
+                        console.error("Response received:", response);
                         $('#confirmationModal .modal-body').text('Invalid JSON response from server.');
                         $('#confirmationModal').modal('show');
                     }
@@ -366,7 +367,6 @@
             });
         });
 
-       
         function triggerStarAnimation() {
             const stars = starContainer.find('.star');
             stars.each(function (index) {
