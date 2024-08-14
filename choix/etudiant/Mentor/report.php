@@ -167,9 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_annee'])) {
                             <th>CC Note</th>
                             <th>Normal Note</th>
                             <th>Final Note</th>
-                            <th>Filiere</th>
-                            <th>Semestre</th>
-                            <th>Niveau</th>
+                            
                             <th>Comment</th>
                         </tr>
                     </thead>
@@ -221,9 +219,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_annee'])) {
                                 <td><?= $note['cc_note'] ?? 'N/A' ?></td>
                                 <td><?= $note['normal_note'] ?? 'N/A' ?></td>
                                 <td><?= $note['note_final'] ?? 'N/A' ?></td>
-                                <td><?= $note['nom_filiere'] ?></td>
-                                <td><?= $note['nom_semestre'] ?></td>
-                                <td><?= $note['nom_niveau'] ?></td>
+                               
                                 <td class="comment-cell"><?= $comment ?></td> <!-- Display the comment here -->
                             </tr>
                         <?php endforeach; ?>
