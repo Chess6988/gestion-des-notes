@@ -26,12 +26,13 @@ if ($result->num_rows > 0) {
 $response = array('status' => 'error', 'message' => 'Mot de passe incorrect');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $role = $_POST['role'];
-    $plainPassword = $_POST['rolePassword'];
+    $role = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING);
+    $plainPassword = filter_input(INPUT_POST, 'rolePassword', FILTER_SANITIZE_STRING);
 
-    // Debugging: Log received role and password
-    error_log("Received Role: " . $role);
-    error_log("Received Password: " . $plainPassword);
+    if (empty($role) || empty($plainPassword)) {
+        echo json_encode(array('status' => 'error', 'message' => 'Paramètres manquants ou invalides.'));
+        exit;
+    };
 
     // SQL query to fetch plain text password from database based on role
     $stmt = $conn->prepare("SELECT rolePassword FROM roles WHERE role = ?");
