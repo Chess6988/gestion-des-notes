@@ -311,7 +311,7 @@
             const feedbackMsg = $('#feedbackMsg');
             const motivationalMessage = $('#motivationalMessage');
             const levelUp = $('#levelUp');
-
+    
             $('#roleForm').submit(function(event) {
                 event.preventDefault(); // Prevent the form from submitting normally
                 $.ajax({
@@ -327,7 +327,6 @@
                                 confettiContainer.css('display', 'block');
                                 starContainer.css('display', 'flex');
                                 triggerStarAnimation();
-
                                 setTimeout(function() {
                                     confettiContainer.css('display', 'none');
                                     starContainer.css('display', 'none');
@@ -365,7 +364,7 @@
                     }
                 });
             });
-
+    
             function triggerStarAnimation() {
                 const stars = starContainer.find('.star');
                 stars.each(function (index) {
