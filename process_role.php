@@ -14,7 +14,6 @@ if ($conn->connect_error) {
 
 // Temporary debugging script to log all roles and passwords
 $result = $conn->query("SELECT role, rolePassword FROM roles");
-
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         error_log("Role: " . $row["role"] . " - Password: " . $row["rolePassword"]);
@@ -32,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($role) || empty($plainPassword)) {
         echo json_encode(array('status' => 'error', 'message' => 'Paramètres manquants ou invalides.'));
         exit;
-    };
+    }
 
     // SQL query to fetch plain text password from database based on role
     $stmt = $conn->prepare("SELECT rolePassword FROM roles WHERE role = ?");

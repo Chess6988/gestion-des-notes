@@ -1,6 +1,6 @@
 Array
 (
-    [firstName_enseignant] => John
-    [lastName_enseignant] => John 
-    [password] => john
+    [firstName_enseignant] => ben
+    [lastName_enseignant] => ben
+    [password] => ben
 )

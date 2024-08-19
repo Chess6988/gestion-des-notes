@@ -170,3 +170,9 @@ Inserted matiere_commune: 1
 Inserted matiere_commune: 2
 Inserted matiere_commune: 3
 Inserted matiere_commune: 4
+Received data: id_enseignant=29, id_annee=1, matieres=["35","37","38","39"], matieres_communes=["4"]
+Inserted matiere: 35
+Inserted matiere: 37
+Inserted matiere: 38
+Inserted matiere: 39
+Inserted matiere_commune: 4
