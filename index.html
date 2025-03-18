@@ -102,33 +102,12 @@
             position: relative;
             margin-bottom: 20px;
         }
-        .progress-bar {
-            height: 30px;
-            background-color: #004080;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 15px;
-            font-weight: bold;
-            animation: moveRight 0.5s ease-in-out;
-            transition: width 0.5s;
-        }
+        
         @keyframes moveRight {
             0% { width: 0%; }
             100% { width: var(--width); }
         }
-        .level-up {
-            position: absolute;
-            top: -35px;
-            right: 0;
-            background: #ff0;
-            color: #333;
-            padding: 5px 10px;
-            border-radius: 15px;
-            animation: fadeInOut 2s ease-in-out;
-            display: none;
-        }
+       
         @keyframes fadeInOut {
             0%, 100% { opacity: 0; }
             50% { opacity: 1; }
@@ -147,28 +126,14 @@
             background-color: #ff0;
             animation: confetti 5s linear infinite;
         }
-        .confetti:nth-child(1) { animation-delay: 0s; left: 10%; }
-        .confetti:nth-child(2) { animation-delay: 1s; left: 20%; }
-        .confetti:nth-child(3) { animation-delay: 2s; left: 30%; }
-        .confetti:nth-child(4) { animation-delay: 3s; left: 40%; }
-        .confetti:nth-child(5) { animation-delay: 4s; left: 50%; }
-        .confetti:nth-child(6) { animation-delay: 5s; left: 60%; }
-        .confetti:nth-child(7) { animation-delay: 6s; left: 70%; }
-        .confetti:nth-child(8) { animation-delay: 7s; left: 80%; }
-        .confetti:nth-child(9) { animation-delay: 8s; left: 90%; }
-        .confetti:nth-child(10) { animation-delay: 9s; left: 100%; }
+     
     
         @keyframes confetti {
             0% { transform: translateY(0) rotate(0); }
             100% { transform: translateY(100vh) rotate(720deg); }
         }
     
-        .star {
-            position: absolute;
-            color: #ff0;
-            font-size: 20px;
-            animation: starPop 1s ease-in-out;
-        }
+       
         @keyframes starPop {
             0% {
                 transform: scale(0);
@@ -242,10 +207,10 @@
     <div class="custom-container">
         <div class="form-box">
             <div class="progress-container">
-                <div class="progress-bar" style="--width: 0%;" id="progressBar">0%</div>
+                
                 <div class="starburst" id="starburst"></div>
             </div>
-            <div class="level-up" id="levelUp">Level Up!</div>
+            
             <img src="IME.jpeg" alt="Logo" class="logo">
             <form id="roleForm" method="post" action="process_role.php">
                 <div class="form-group">

@@ -43,7 +43,9 @@ $conn->close();
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Enseignants</title>
+   
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -124,39 +126,53 @@ $conn->close();
             </tr>
             </thead>
             <tbody id="enseignantsTable">
-            <?php if ($enseignantsProfiles): ?>
-                <?php while ($row = $enseignantsProfiles->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($row['lastName_enseignant']); ?></td>
-                        <td><?= htmlspecialchars($row['firstName_enseignant']); ?></td>
-                        <td><?= htmlspecialchars($row['annee']); ?></td>
-                        <td><?= htmlspecialchars($row['nom_matiere']); ?></td>
-                        <td><?= htmlspecialchars($row['matiere_code']); ?></td>
-                        <td><?= htmlspecialchars($row['nom_matiere_commune']); ?></td>
-                        <td><?= htmlspecialchars($row['matiere_commune_code']); ?></td>
-                        <td><?= $row['validated'] ? '<i class="fas fa-check"></i> Oui' : '<i class="fas fa-times"></i> Non'; ?></td>
-                        <td><?= htmlspecialchars($row['date_creation']); ?></td>
-                        <td>
-                            <form action="delete_profile.php" method="post" style="display:inline;">
-                                <input type="hidden" name="id_profile_enseignant" value="<?= $row['id_profile_enseignant']; ?>">
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i> Supprimer
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="10" class="text-center">Aucun enseignant trouvé.</td>
-                </tr>
-            <?php endif; ?>
-            </tbody>
+    <?php if ($enseignantsProfiles): ?>
+        <?php while ($row = $enseignantsProfiles->fetch_assoc()): ?>
+            <tr>
+                <td><?= htmlspecialchars($row['lastName_enseignant']); ?></td>
+                <td><?= htmlspecialchars($row['firstName_enseignant']); ?></td>
+                <td><?= htmlspecialchars($row['annee']); ?></td>
+                <td><?= htmlspecialchars($row['nom_matiere']); ?></td>
+                <td><?= htmlspecialchars($row['matiere_code']); ?></td>
+                <td><?= htmlspecialchars($row['nom_matiere_commune']); ?></td>
+                <td><?= htmlspecialchars($row['matiere_commune_code']); ?></td>
+                <td><?= $row['validated'] ? '<i class="fas fa-check"></i> Oui' : '<i class="fas fa-times"></i> Non'; ?></td>
+                <td><?= htmlspecialchars($row['date_creation']); ?></td>
+                <td>
+                <form action="update_information_teacher.php" method="post" style="display:inline;">
+                        <input type="hidden" name="id_profile_enseignant" value="<?= $row['id_profile_enseignant']; ?>">
+                        <button type="submit" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Modifier
+                        </button>
+                    </form>
+                    <form action="delete_profile.php" method="post" style="display:inline;">
+                        <input type="hidden" name="id_profile_enseignant" value="<?= $row['id_profile_enseignant']; ?>">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Supprimer
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="10" class="text-center">Aucun enseignant trouvé.</td>
+        </tr>
+    <?php endif; ?>
+</tbody>
+
         </table>
     </div>
     <button type="button" class="btn btn-outline-danger mt-3">
         <i class="fas fa-arrow-left"></i> <a href="admin-dashboard.php">Retour à la page d'accueil</a>
     </button>
+
+    <form action="update_information_teacher.php" method="post" style="display:inline;">
+                        <input type="hidden" name="id_profile_enseignant" value="<?= $row['id_profile_enseignant']; ?>">
+                        <button type="submit" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Modifier
+                        </button>
+                    </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
