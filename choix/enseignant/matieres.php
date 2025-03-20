@@ -216,6 +216,7 @@ $conn->close();
 
 
 <!-- Modal to display students -->
+<!-- Modal to display students -->
 <div class="modal fade" id="studentsModal" tabindex="-1" role="dialog" aria-labelledby="studentsModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -226,6 +227,10 @@ $conn->close();
                 </button>
             </div>
             <div class="modal-body">
+
+                <!-- Search Bar -->
+                <input type="text" id="searchStudents" class="form-control mb-3" placeholder="Search student by name...">
+                
                 <form id="studentsForm">
                     <div id="studentsList"></div>
                     <div class="d-flex justify-content-between">
@@ -241,19 +246,59 @@ $conn->close();
         </div>
     </div>
 </div>
+
 </body>
 </html>
 
+<!-- Modal to display students -->
+<div class="modal fade" id="studentsModal" tabindex="-1" role="dialog" aria-labelledby="studentsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="studentsModalLabel"><i class="fas fa-user-graduate"></i> Your Students who registered this subjects  </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <!-- Search Bar -->
+                <input type="text" id="searchStudents" class="form-control mb-3" placeholder="Search student by name...">
+                
+                <form id="studentsForm">
+                    <div id="studentsList"></div>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary mt-3" id="submitGradesBtn">
+                            <i class="fas fa-save"></i> Submit Grades
+                        </button>
+                        <button type="button" class="btn btn-secondary mt-3" id="editGradesBtn">
+                            <i class="fas fa-edit"></i> Edit Grades
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
 
 <script>
-
-
 function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('active');
-        }
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('active');
+}
 
 $(document).ready(function() {
+    // 🔍 Functional Search Bar (Filters Only Names That Start With Input)
+    $('#searchStudents').on('input', function() { 
+        var value = $(this).val().toLowerCase().trim();
+        $('#studentsList div').each(function() { 
+            $(this).toggle($(this).text().toLowerCase().trim().startsWith(value));
+        });
+    });
+
     $('.show-students-btn').on('click', function() {
         var matiereId = $(this).data('matiere-id');
         var matiereCommuneId = $(this).data('matiere-commune-id');
@@ -278,36 +323,32 @@ $(document).ready(function() {
                     studentsList.empty();
 
                     students.forEach(function(student) {
-    var cc_note = student.cc_note || '';
-    var normal_note = student.normal_note || '';
-    var note_final = student.note_final || '';
+                        var cc_note = student.cc_note || '';
+                        var normal_note = student.normal_note || '';
+                        var note_final = student.note_final || '';
 
-    // Only show the "Rattraper" message if the final note is less than 10 and has been set
-    var rattraperMessage = (note_final && note_final < 10) ? '<span class="text-danger"> - Rattraper</span>' : '';
+                        var rattraperMessage = (note_final && note_final < 10) ? '<span class="text-danger"> - Rattraper</span>' : '';
 
-    var message = student.duplicate
-        ? `<div class="alert alert-warning">Déjà attribué: ${cc_note} (CC), ${normal_note} (Normal), ${note_final} (Final)</div>`
-        : '';
+                        var message = student.duplicate
+                            ? `<div class="alert alert-warning">Déjà attribué: ${cc_note} (CC), ${normal_note} (Normal), ${note_final} (Final)</div>`
+                            : '';
 
-    var inputFields = `
-    
-        <div class="form-group">
-        
-            <label>${student.firstName_etudiant} ${student.lastName_etudiant}${rattraperMessage}</label>
-            <input type="hidden" name="id_etudiant[]" value="${student.id_etudiant}">
-            <input type="hidden" name="id_matiere[]" value="${matiereId || ''}">
-            <input type="hidden" name="id_matiere_commune[]" value="${matiereCommuneId || ''}">
-            <input type="hidden" name="id_annee[]" value="${anneeId}">
-            <input type="number" name="cc_note[]" class="form-control" value="${cc_note}" placeholder="CC Note" min="0" max="20" required>
-            <input type="number" name="normal_note[]" class="form-control" value="${normal_note}" placeholder="Normal Note" min="0" max="20" required>
-            <input type="number" name="note_final[]" class="form-control" value="${note_final}" placeholder="Final Note" readonly>
-            <div class="bootstrap-message" id="message-${student.id_etudiant}">${message}</div>
-            <button type="button" class="btn btn-secondary edit-grades-btn mt-2" data-id_etudiant="${student.id_etudiant}">Edit</button>
-        </div>
-    `;
-    studentsList.append(inputFields);
-});
-
+                        var inputFields = `
+                            <div class="form-group student-item">
+                                <label>${student.firstName_etudiant} ${student.lastName_etudiant}${rattraperMessage}</label>
+                                <input type="hidden" name="id_etudiant[]" value="${student.id_etudiant}">
+                                <input type="hidden" name="id_matiere[]" value="${matiereId || ''}">
+                                <input type="hidden" name="id_matiere_commune[]" value="${matiereCommuneId || ''}">
+                                <input type="hidden" name="id_annee[]" value="${anneeId}">
+                                <input type="number" name="cc_note[]" class="form-control" value="${cc_note}" placeholder="CC Note" min="0" max="20" required>
+                                <input type="number" name="normal_note[]" class="form-control" value="${normal_note}" placeholder="Normal Note" min="0" max="20" required>
+                                <input type="number" name="note_final[]" class="form-control" value="${note_final}" placeholder="Final Note" readonly>
+                                <div class="bootstrap-message" id="message-${student.id_etudiant}">${message}</div>
+                                <button type="button" class="btn btn-secondary edit-grades-btn mt-2" data-id_etudiant="${student.id_etudiant}">Edit</button>
+                            </div>
+                        `;
+                        studentsList.append(inputFields);
+                    });
 
                     $('#studentsModal').modal('show');
                 } catch (e) {
@@ -378,5 +419,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
+
 </body>
 </html>

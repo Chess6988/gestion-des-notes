@@ -357,11 +357,7 @@ $result_matieres_communes = $stmt_matieres_communes->get_result();
                       </div>
                       <div class="pmbb-body p-l-30">
                           <div class="pmbb-view">
-                              <dl class="dl-horizontal">
-                                  <dt> ID</dt>
-                                  <dd><?php echo htmlspecialchars($profile['id_etudiant']); ?></dd>
-                              </dl>
-
+                             
                             
                                 
                               <dl class="dl-horizontal">
@@ -460,7 +456,7 @@ $result_matieres_communes = $stmt_matieres_communes->get_result();
               
           </ul>
           <div class="row " style="text-align: center;COLOR:black">
-          <p class="" >Par Le Developpeur  &nbsp;<a  target="_blank"  style="color: red"> KUETE VALDES</a>&nbsp;&nbsp;<br/> <span>&copy</span>2024</p>
+          <p class="" >Par Le Developpeur  &nbsp;<a  target="_blank"  style="color: red"> TEMGOUA IGOR</a>&nbsp;&nbsp;<br/> <span>&copy</span>2024</p>
       </div></footer>
       
       </section>

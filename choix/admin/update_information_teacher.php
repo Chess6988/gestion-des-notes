@@ -253,6 +253,8 @@ $(document).ready(function() {
 
                 // ✅ Fix: Ensure correct ID and Type for Matieres
                 response.matieres.forEach(function(matiere) {
+    console.log("🛠 CHECKING MATIERE:", matiere);  // ✅ Debug matiere object
+
     matiereHtml += `
         <tr data-profile-id="${matiere.id_profile_enseignant}" data-matiere-id="${matiere.id_matiere}">
             <td>${matiere.nom_matiere}</td>
@@ -263,7 +265,8 @@ $(document).ready(function() {
                     Edit
                 </button>
                 <button class="btn btn-danger btn-sm btn-supprimer-matiere" 
-                        data-matiere-id="${matiere.id_matiere}" 
+                        data-profile-id="${matiere.id_profile_enseignant}" 
+                        data-matiere-id="${matiere.id_matiere}"  
                         data-matiere-type="matiere">
                     Supprimer
                 </button>
@@ -273,26 +276,31 @@ $(document).ready(function() {
 });
 
 
+
                 // ✅ Fix: Use Correct `id_matiere_commune` for matieres_communes
                 response.matieresCommunes.forEach(function(matiere) {
-                    matiereHtml += `
-                        <tr data-matiere-id="${matiere.id_matiere_commune}" data-profile-id="${matiere.id_profile_enseignant}">
-                            <td>${matiere.nom_matiere} (Commune)</td>
-                            <td>${matiere.courseCode}</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm btn-edit-matiere"
-                                        data-matiere-type="matiere_commune">
-                                    Edit
-                                </button>
-                                <button class="btn btn-danger btn-sm btn-supprimer-matiere" 
-                                        data-matiere-id="${matiere.id_matiere_commune}" 
-                                        data-matiere-type="matiere_commune">
-                                    Supprimer
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                });
+    console.log("🛠 CHECKING COMMUNE MATIERE:", matiere);  // ✅ Debugging
+
+    matiereHtml += `
+        <tr data-profile-id="${matiere.id_profile_enseignant}" data-matiere-id="${matiere.id_matiere_commune}">
+            <td>${matiere.nom_matiere} (Commune)</td>
+            <td>${matiere.courseCode}</td>
+            <td>
+                <button class="btn btn-warning btn-sm btn-edit-matiere"
+                        data-matiere-type="matiere_commune">
+                    Edit
+                </button>
+                <button class="btn btn-danger btn-sm btn-supprimer-matiere" 
+                        data-profile-id="${matiere.id_profile_enseignant}" 
+                        data-matiere-id="${matiere.id_matiere_commune}"  
+                        data-matiere-type="matiere_commune">
+                    Supprimer
+                </button>
+            </td>
+        </tr>
+    `;
+});
+
 
                 if (matiereHtml === "") {
                     matiereHtml = '<tr><td colspan="3" class="text-center">No Data Available</td></tr>';
@@ -321,17 +329,25 @@ $(document).ready(function() {
 
     // ✅ Fix: Handle 'Supprimer' button click & ensure correct ID is sent
     $(document).on('click', '.btn-supprimer-matiere', function() {
-    var matiereId = $(this).data('matiere-id'); // Ensure this gets the correct ID
-    var matiereType = $(this).data('matiere-type'); // Ensure correct type (matiere or matiere_commune)
+    console.log("🛠 DELETE BUTTON CLICKED. FULL HTML: ", $(this)[0].outerHTML);  // ✅ Logs full button HTML
+
+    var matiereId = $(this).attr('data-matiere-id');
+    var profileId = $(this).attr('data-profile-id');
+    var matiereType = $(this).attr('data-matiere-type');
     var row = $(this).closest('tr');
 
-    console.log("❌ DELETE ATTEMPT: ID =", matiereId, "TYPE =", matiereType); // Debugging log
+    console.log("🛠 Captured IDs: matiereId =", matiereId, "| profileId =", profileId, "| Type =", matiereType); 
 
-    // ✅ Convert matiereId to a valid integer
+    if (!matiereId || matiereId.trim() === "" || matiereId === "undefined") {
+        console.error("🚨 ERROR: The delete button is missing 'data-matiere-id'.");
+        showToast("Error: Unable to delete subject. Data missing.", "danger");
+        return;
+    }
+
     matiereId = parseInt(matiereId, 10);
-    if (isNaN(matiereId) || matiereId <= 0 || !matiereType) {
-        console.error("🚨 ERROR: Invalid subject ID or type. ID received:", matiereId, "Type:", matiereType);
-        showToast("Error: Invalid subject ID or type.", "danger");
+    if (isNaN(matiereId) || matiereId <= 0) {
+        console.error("🚨 ERROR: Invalid subject ID.");
+        showToast("Error: Invalid subject ID.", "danger");
         return;
     }
 
@@ -339,30 +355,25 @@ $(document).ready(function() {
         return;
     }
 
-    console.log("📡 Sending DELETE request with:", { id_matiere: matiereId, matiere_type: matiereType });
-
     $.ajax({
         type: 'POST',
         url: 'delete_matiere.php',
         data: { id_matiere: matiereId, matiere_type: matiereType },
         dataType: 'json',
         success: function(response) {
-            console.log("🔄 DELETE RESPONSE:", response); // Debugging log
+            console.log("🔄 DELETE RESPONSE:", response);
             if (response.success) {
-                row.fadeOut(500, function() { $(this).remove(); }); // Remove row smoothly
+                row.fadeOut(500, function() { $(this).remove(); });
                 showToast("Subject deleted successfully!", "success");
             } else {
-                console.error("🚨 DELETE ERROR:", response.error);
                 showToast("Error deleting subject: " + response.error, "danger");
             }
         },
         error: function(xhr, status, error) {
-            console.error("🚨 AJAX ERROR:", xhr.responseText);
             showToast("AJAX Error: " + error, "danger");
         }
     });
 });
-
 
     // ✅ Fix: Handle 'Edit' button click
     $(document).on('click', '.btn-edit-matiere', function() {

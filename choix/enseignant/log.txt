@@ -187,3 +187,9 @@ Inserted matiere: 40
 Received data: id_enseignant=32, id_annee=1, matieres=[], matieres_communes=[]
 Received data: id_enseignant=32, id_annee=1, matieres=["39"], matieres_communes=[]
 Inserted matiere: 39
+Received data: id_enseignant=33, id_annee=1, matieres=["35","36"], matieres_communes=["1","2","11"]
+Inserted matiere: 35
+Inserted matiere: 36
+Inserted matiere_commune: 1
+Inserted matiere_commune: 2
+Inserted matiere_commune: 11
