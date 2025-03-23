@@ -103,10 +103,11 @@
 .navmenu ul li {
     margin-right: 20px;
 }
+
 .navmenu ul li a {
     color: black;
     position: relative;
-    padding-bottom: 0.5rem;
+    padding: 0.1rem 2rem; /* Updated: Reduced padding from 0.5rem to 0.3rem to decrease navbar height */
     transition: color 0.3s;
     text-decoration: none;
 }
@@ -141,20 +142,51 @@
 .navmenu ul li.dropdown ul li {
     margin-right: 0;
 }
+
+
+
+.header {
+    
+    position: fixed; /* Fix navbar at top */
+    width: 100%;
+    background: rgba(255, 255, 255, 0) !important; /* Ensure full transparency */
+    z-index: 1000; /* Keep navbar on top */
+
+
+}
+
+/* ✅ Ensures the background image starts below the navbar */
+.hero {
+    margin-top: -60px; /* Keeps the top as is */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Pushes image towards the bottom */
+    height: 100vh; /* Full height of viewport */
+    width: 100%;
+}
+.container-fluid {
+    background: transparent !important;
+}
+.header, .container-fluid, .navmenu {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.hero img {
+    width: 100%; /* Ensure it spans the full width */
+    height: auto; /* Maintain aspect ratio */
+    max-height: calc(100vh - 60px); /* Make sure it extends downward but leaves space for the top */
+    object-fit: cover; /* Ensures it fills the space properly */
+    display: block;
+}
+
 </style>
 
-  <header id="header" class="header d-flex align-items-center sticky-top">
+  <header id="header" class="header d-flex align-items-center sticky-top" style="background: transparent !important;">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a  class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <img src="https://www.ime-school.com/wp-content/uploads/2023/11/logo-ime-p.png" alt="IME School Logo" style="width: auto; height: 100%;">
-
-      </a>
-
+   
       
-      <nav id="navmenu" class="navmenu">
+      <nav id="navmenu" class="navmenu" style="margin-left: auto;">
         <ul>
             <li><a  class="active" >Page d'acceuil<br></a></li>
             <li><a href="profil.php" >Profils</a></li>
@@ -178,21 +210,16 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section">
+      <img src="rouge.jpg" alt="" data-aos="fade-in">
 
-      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
-
-      <div class="container">
-        <h2 data-aos="fade-up" data-aos-delay="300"class="gdlr-core-title-item-title gdlr-core-skin-title " style="font-size: 60px ;font-weight: 700 ;color: blue ;">BIENVENUE DANS NOTRE </h2><br>
-        <h2 data-aos="fade-up" data-aos-delay="900"class="gdlr-core-title-item-title gdlr-core-skin-title " style="font-size: 60px ;font-weight: 700 ;color: blue ;">PLATFORM DE GESTION </h2><br>
-        <h2 data-aos="fade-up" data-aos-delay="1800"class="gdlr-core-title-item-title gdlr-core-skin-title " style="font-size: 60px ;font-weight: 700 ;color: blue ;">DES NOTES </h2>
-        
-         
-        </div>
+      
+     
       </div>
 
     </section><!-- /Hero Section -->
 
-
+<!-- <img src="assets/img/new1.jpg" alt="" data-aos="fade-in">
+ -->
    
   
 

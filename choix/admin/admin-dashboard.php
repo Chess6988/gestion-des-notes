@@ -38,20 +38,27 @@ $conn->close();
             font-family: 'Arial', sans-serif;
             background-color: #c4cfdb;
             overflow-x: hidden;
+            background-image: url('etudiant.jpg'); /* Sets the background image */
+    background-size: cover; /* Ensures the image covers the entire page */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh;
+    
         }
         .sidebar {
-            height: 100%;
-            width: 100%;
-            background-color: rgb(6, 6, 17);
-            color: white;
-            position: fixed;
-            top: 0;
-            left: -100%;
-            transition: left 0.3s ease-in-out;
-            z-index: 1000;
-            overflow-y: auto;
-            font-weight: bolder;
-        }
+    height: 100%;
+    width: 250px !important; /* ✅ Set fixed width instead of full screen */
+    background-color: rgb(6, 6, 17);
+    color: white;
+    position: fixed;
+    top: 0;
+    left: -250px; /* ✅ Hide sidebar off-screen */
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+    overflow-y: auto;
+    font-weight: bolder;
+}
+
         .sidebar.active {
             left: 0;
         }
@@ -154,6 +161,38 @@ $conn->close();
                 margin-left: 0;
             }
         }
+        
+
+/* ✅ Sidebar active: Moves in */
+.sidebar.active {
+    left: 0;
+}
+
+/* ✅ Shift content when sidebar is open */
+.content {
+    padding: 20px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* ✅ When sidebar is active, push content */
+.content.active {
+    margin-left: 250px !important; /* ✅ Moves content to the right */
+}
+
+/* ✅ Fix menu icon position */
+.menu-icon {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    color: #ffc107;
+    z-index: 1100; /* ✅ Higher z-index so it stays visible */
+}
+.nav {
+    margin-top: 25px; /* Adjust as needed */
+}
     </style>
 </head>
 <body>
@@ -162,13 +201,13 @@ $conn->close();
     </div>
     <nav class="sidebar">
         <div class="sidebar-sticky pt-3 text-center">
-            <h2>Tableau de Bord Admin</h2>
+            
             
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link" href="mes-enseignants.php"><i class="fas fa-users"><?php if ($newEntriesCount > 0): ?>
-                        <span class="badge badge-danger"><?= $newEntriesCount ?> Nouveau message</span>
-                    <?php endif; ?></i> Mes Enseignants</a>
+                        <span class="badge badge-danger"><?= $newEntriesCount ?>  message</span>
+                    <?php endif; ?></i> Enseignants</a>
                     
                 </li>
                 <li class="nav-item">
@@ -187,8 +226,8 @@ $conn->close();
         <div class="text-center mt-5">
         
             
-            <h1>Welcome, <?php echo $_SESSION['firstName_admin'] . ' ' . $_SESSION['lastName_admin']; ?> sur votre Tableau de Bord</h1>
-            <p>Sélectionnez une option dans la barre latérale pour commencer.</p>
+            <h1  style="color: white; font-weight: bold;">Welcome, <?php echo $_SESSION['firstName_admin'] . ' ' . $_SESSION['lastName_admin']; ?> sur votre Tableau de Bord</h1>
+            
            
         
            

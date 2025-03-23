@@ -198,7 +198,7 @@ $result_matieres_communes = $stmt_matieres_communes->get_result();
 }
 </style>
 
-  <header id="header" class="header d-flex align-items-center sticky-top">
+  <header id="header" class="header d-flex align-items-center sticky-top"  style="background: white !important;">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto">
@@ -209,17 +209,15 @@ $result_matieres_communes = $stmt_matieres_communes->get_result();
       </a>
 
       <nav id="navmenu" class="navmenu">
-        <ul>
-            <li><a   href="index.html" >Page d'acceuil<br></a></li>
-            <li><a class="active">Profils</a></li>
-    
-            <li><a href="report.php">Vos notes</a></li>
-            <li><a href="report_card.php">Relevez des note</a></li>
-          
-         
-          
-                <i class="mobile-nav-toggle d-xl-none bi bi-list" style="font-size: 100%; font-weight: bolder;"></i>
-    </nav>
+    <ul>
+        <li><a href="index.html">Page d'acceuil<br></a></li>
+        <li><a class="active">Profils</a></li>
+        <li><a href="report.php">Vos notes</a></li>
+        <li><a href="report_card.php">Relevez des note</a></li>
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list" style="font-size: 100%; font-weight: bolder;"></i>
+</nav>
+
 
     
 
@@ -252,21 +250,7 @@ $result_matieres_communes = $stmt_matieres_communes->get_result();
       </nav>
       
     </div> End Page Title -->
-    <div    class="page-title" data-aos="fade"  class="page-title" data-aos="fade" style="background-color: blue;">
-        <div class="heading">
-          <div class="container">
-            <div class="row d-flex justify-content-center text-center"  >
-              <div class="col-lg-8">
-                <h1>Profil</h1><hr>
-                
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      
-        
-      </div>
+
     
     <section id="main">
 

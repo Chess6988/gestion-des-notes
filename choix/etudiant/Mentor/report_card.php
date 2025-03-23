@@ -239,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_annee'])) {
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>S/N</th>
+                        <th>No</th>
                         <th>Liste des Matières</th>
                         <th>CC notes</th>
                         <th>Normal notes</th>
@@ -260,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_annee'])) {
                                 <td><?= $note['matiere_name'] ?></td>
                                 <td><?= $note['cc_note'] ?></td>
                                 <td><?= $note['normal_note'] ?></td>
-                                <td class="final-mark"><?= $note['note_final'] ?></td>
+                                <td class="final-mark" style="color: blue;"><?= $note['note_final'] ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>

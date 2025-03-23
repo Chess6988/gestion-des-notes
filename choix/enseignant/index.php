@@ -119,23 +119,22 @@ if (!isset($_SESSION['firstName_enseignant']) || !isset($_SESSION['lastName_ense
     <div class="menu-icon" onclick="toggleSidebar()">
         <i class="fas fa-bars"></i>
     </div>
-    <nav class="sidebar active">
-        <div class="sidebar-sticky pt-3 text-center">
-            <h2>Tableau de Bord</h2>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="matieres.php"><i class="fas fa-book"></i> Mes Matières</a>
-                </li>
-            
-            </ul>
-        </div>
-    </nav>
-    <div class="content">
-        <div class="text-center mt-5">
-            <h1>Welcome, <?php echo $_SESSION['firstName_enseignant'] . ' ' . $_SESSION['lastName_enseignant']; ?> sur votre Tableau de Bord</h1>
-            <p>Sélectionnez une option dans la barre latérale pour commencer.</p>
-        </div>
+    <nav class="sidebar active" style="background-color: black; color: white;">
+    <div class="sidebar-sticky pt-3 text-center">
+        <h2>Tableau de Bord</h2>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="matieres.php" style="color: white;"><i class="fas fa-book"></i> Mes Matières</a>
+            </li>
+        </ul>
     </div>
+</nav>
+    <div class="content" style="background-image: url('batiment.jpeg'); background-size: cover; background-position: center; min-height: 100vh; color: white;">
+    <div class="text-center mt-5">
+        <h1>Welcome, <?php echo $_SESSION['firstName_enseignant'] . ' ' . $_SESSION['lastName_enseignant']; ?> sur votre Tableau de Bord</h1>
+        <p>Sélectionnez une option dans la barre latérale pour commencer.</p>
+    </div>
+</div>
     <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

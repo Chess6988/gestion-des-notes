@@ -177,9 +177,7 @@ $conn->close();
             <li class="nav-item">
                     <a class="nav-link" href="index.php"><i class="fas fa-book"></i> Page d'acceuil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="active"><i class="fas fa-book"></i> Mes Matières</a>
-                </li>
+              
             
             </ul>
         </div>
